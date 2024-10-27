@@ -19,7 +19,7 @@ class IOlistDataframes:
     df_product_category_translation: pd.DataFrame
 
 st.set_page_config(layout="wide")
-st.write("# Categorias")
+st.write("# Categorias & Crescimento")
 
 @st.cache_data
 def init_get_datasets()->IOlistDataframes:
@@ -203,7 +203,8 @@ with tab_categoria:
     col1, col2 = st.columns(2)
     
     with col1:
-        group_by_macro_category = st.toggle(label='Agrupar por categoria', value=False, key='group_by_macro_category')
+        if not show_macro_category:
+            group_by_macro_category = st.toggle(label='Agrupar por categoria', value=False, key='group_by_macro_category')
     with col2:
         with st.expander("Filtros"):
             display_categories = st.multiselect(
